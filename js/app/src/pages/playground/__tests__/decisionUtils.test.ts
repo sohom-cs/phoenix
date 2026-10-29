@@ -430,7 +430,7 @@ describe("request import", () => {
 });
 
 describe("answer normalization", () => {
-  it("normalizes a System One response in the author's option order", () => {
+  it("normalizes a System One response most likely first, ties in the author's order", () => {
     const draft = createDecisionDraft();
     const result = normalizeDecisionResult({
       result: {
