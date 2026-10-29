@@ -58,12 +58,6 @@ function DecisionDetails({ decision }: { decision: DecisionAnnotation }) {
             value={`${decision.question.name} (${decision.question.type.toLowerCase()})`}
           />
         ) : null}
-        {answer?.__typename === "PredicateAnswer" ? (
-          <DecisionRow
-            name="probability"
-            value={floatFormatter(answer.probability)}
-          />
-        ) : null}
         {answer?.__typename === "ScaleAnswer" ? (
           <DecisionRow
             name="expected level"
