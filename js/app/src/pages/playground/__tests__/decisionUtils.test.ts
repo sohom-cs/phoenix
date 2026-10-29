@@ -1,3 +1,7 @@
+import {
+  normalizeDecisionAnswer,
+  normalizeDecisionResult,
+} from "@phoenix/components/decision/decisionAnswers";
 import { TemplateFormats } from "@phoenix/components/templateEditor/constants";
 import { DEFAULT_INSTANCE_PARAMS } from "@phoenix/store/playground";
 import type { PlaygroundInstance } from "@phoenix/store/playground/types";
@@ -20,8 +24,6 @@ import {
   getChatForDecisionToPrompt,
   getDecisionValidationError,
   maskUntouchedErrors,
-  normalizeDecisionAnswer,
-  normalizeDecisionResult,
   parseDecisionImport,
   toDecisionJsonSchema,
   toDecisionOutput,
@@ -535,7 +537,12 @@ describe("span replay", () => {
       },
     });
     expect(result.answers).toEqual([
-      { kind: "predicate", name: "urgent", probability: 0.9 },
+      expect.objectContaining({
+        kind: "predicate",
+        name: "urgent",
+        probability: 0.9,
+        choice: "True",
+      }),
       { kind: "refusal", name: "team" },
     ]);
   });
